@@ -2,6 +2,8 @@ node_modules
 deps.js
 master.zip
 src/schedul/pq
+src/ubilabs
 src/ol
 ol3-master
 priorityqueue-js-master
+kdtree-closure-master
