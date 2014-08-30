@@ -12,6 +12,8 @@ goog.require('ubilabs.KDTree');
 
 
 /**
+ * If capacity is zero or negative, it will never (even try to) wipe out.
+ *
  * @constructor
  * @extends {goog.events.EventTarget}
  * @param {!number} capacity
@@ -252,6 +254,10 @@ schedul.bh.Coordinate3Heap.prototype.pageOutFarestFrom = function(x, y, z) {
  */
 schedul.bh.Coordinate3Heap.prototype.pageOutIfCapacityOver_ = function(point) {
   goog.asserts.assertInstanceof(point, goog.math.Coordinate3);
+
+  if(this.maxPointXytCount_ <= 0){
+    return;
+  }
 
   var limit = this.pointXytCount_;
   while (this.pointXytCount_ > this.maxPointXytCount_ && limit--> 0) {

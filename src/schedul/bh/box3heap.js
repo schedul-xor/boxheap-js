@@ -14,6 +14,8 @@ goog.require('schedul.math.Box3');
 
 
 /**
+ * If capacity is zero or negative, it will never (even try to) wipe out.
+ *
  * @constructor
  * @extends {goog.events.EventTarget}
  * @param {!number} capacity
@@ -222,6 +224,10 @@ schedul.bh.Box3Heap.prototype.pageOutFarestFrom = function(block) {
  */
 schedul.bh.Box3Heap.prototype.pageOutIfCapacityOver_ = function(block) {
   goog.asserts.assertInstanceof(block, schedul.math.Box3);
+
+  if(this.capacity_ <= 0){
+    return;
+  }
 
   if (this.blockSize_ > this.capacity_) {
     this.pageOutFarestFrom(block);
