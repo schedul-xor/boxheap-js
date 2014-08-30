@@ -103,6 +103,6 @@ schedul.math.Box3.prototype.toString = function() {
  * @param {!schedul.math.Box3} blockXyt
  * @return {!string}
  */
-schedul.math.Box3.hash = function(blockXyt){
-  return blockXyt.getMinX() + '/' + blockXyt.getMaxX() + '/' + blockXyt.getMinY() + '/' + blockXyt.getMaxY() +'/' + blockXyt.getMinTime() + '/' + blockXyt.getMaxTime();
+schedul.math.Box3.hash = function(blockXyt) {
+  return blockXyt.getMinX() + '/' + blockXyt.getMaxX() + '/' + blockXyt.getMinY() + '/' + blockXyt.getMaxY() + '/' + blockXyt.getMinTime() + '/' + blockXyt.getMaxTime();
 };

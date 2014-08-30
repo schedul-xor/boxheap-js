@@ -56,14 +56,14 @@ schedul.bh.Coordinate3Heap.prototype.addPoint = function(point) {
   goog.asserts.assertInstanceof(point, goog.math.Coordinate3);
 
   var x = point.x;
-  this.add_(x, point, this.maxXValue2PointMap_, this.maxXHeap_,true);
-  this.add_(x, point, this.minXValue2PointMap_, this.minXHeap_,false);
+  this.add_(x, point, this.maxXValue2PointMap_, this.maxXHeap_, true);
+  this.add_(x, point, this.minXValue2PointMap_, this.minXHeap_, false);
   var y = point.y;
-  this.add_(y, point, this.maxYValue2PointMap_, this.maxYHeap_,true);
-  this.add_(y, point, this.minYValue2PointMap_, this.minYHeap_,false);
+  this.add_(y, point, this.maxYValue2PointMap_, this.maxYHeap_, true);
+  this.add_(y, point, this.minYValue2PointMap_, this.minYHeap_, false);
   var z = point.z;
-  this.add_(z, point, this.maxZValue2PointMap_, this.maxZHeap_,true);
-  this.add_(z, point, this.minZValue2PointMap_, this.minZHeap_,false);
+  this.add_(z, point, this.maxZValue2PointMap_, this.maxZHeap_, true);
+  this.add_(z, point, this.minZValue2PointMap_, this.minZHeap_, false);
 
   var pointHash = point.toString();
   if (!goog.object.containsKey(this.pointXyts_, pointHash)) {
@@ -85,7 +85,7 @@ schedul.bh.Coordinate3Heap.prototype.addPoint = function(point) {
  * @param {!goog.structs.PriorityQueue} heap
  * @param {!boolean} isMaxHeap
  */
-schedul.bh.Coordinate3Heap.prototype.add_ = function(value, point, map, heap,isMaxHeap) {
+schedul.bh.Coordinate3Heap.prototype.add_ = function(value, point, map, heap, isMaxHeap) {
   goog.asserts.assertNumber(value);
   goog.asserts.assertInstanceof(point, goog.math.Coordinate3);
   goog.asserts.assertObject(map);
@@ -99,7 +99,7 @@ schedul.bh.Coordinate3Heap.prototype.add_ = function(value, point, map, heap,isM
   heap.insert(
 
     // Since goog.structs.PriorityQueue can work with MINIMUM priority, it is required to negate value if you want to work for maxheap.
-    isMaxHeap?-value:value,
+    isMaxHeap ? -value : value,
 
     // Although, dequeue() will give you the non-negated version.
     value);
@@ -131,6 +131,7 @@ schedul.bh.Coordinate3Heap.prototype.points_ = function(map, heap) {
  * @private
  * @param {!Object.<!number, !Array.<!goog.math.Coordinate3>>} heapValue2RelatedPoints
  * @param {!goog.structs.PriorityQueue} heap
+ * @param {!string} type
  * @return {?goog.math.Coordinate3}
  */
 schedul.bh.Coordinate3Heap.prototype.popPointFromHeap_ = function(heapValue2RelatedPoints, heap, type) {
@@ -145,7 +146,7 @@ schedul.bh.Coordinate3Heap.prototype.popPointFromHeap_ = function(heapValue2Rela
     poppedHeapValue = heap.dequeue();
     if (goog.isNull(poppedHeapValue)) {continue;}
 
-    if (!goog.object.containsKey(heapValue2RelatedPoints, poppedHeapValue)){continue;}
+    if (!goog.object.containsKey(heapValue2RelatedPoints, poppedHeapValue)) {continue;}
     var points = heapValue2RelatedPoints[poppedHeapValue];
     var relatedPointsLimit = points.length;
     while (relatedPointsLimit--> 0) {
@@ -160,7 +161,7 @@ schedul.bh.Coordinate3Heap.prototype.popPointFromHeap_ = function(heapValue2Rela
     if (points.length === 0) {
       goog.object.remove(heapValue2RelatedPoints, poppedHeapValue);
     }else {
-      heap.enqueue(poppedHeapValue,poppedHeapValue);
+      heap.enqueue(poppedHeapValue, poppedHeapValue);
     }
     if (!goog.isNull(point)) {
       break;
@@ -255,7 +256,7 @@ schedul.bh.Coordinate3Heap.prototype.pageOutFarestFrom = function(x, y, z) {
 schedul.bh.Coordinate3Heap.prototype.pageOutIfCapacityOver_ = function(point) {
   goog.asserts.assertInstanceof(point, goog.math.Coordinate3);
 
-  if(this.maxPointXytCount_ <= 0){
+  if (this.maxPointXytCount_ <= 0) {
     return;
   }
 

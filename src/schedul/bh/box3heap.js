@@ -90,11 +90,11 @@ schedul.bh.Box3Heap.prototype.addBlock = function(block) {
  * @param {!goog.math.Coordinate3} point
  * @param {!string} pointHash
  */
-schedul.bh.Box3Heap.prototype.addBlockPointRelation_ = function(block,blockHash,point, pointHash) {
+schedul.bh.Box3Heap.prototype.addBlockPointRelation_ = function(block, blockHash, point, pointHash) {
   goog.asserts.assertString(blockHash);
   goog.asserts.assertString(pointHash);
 
-  goog.object.setIfUndefined(this.point2block_,pointHash,{});
+  goog.object.setIfUndefined(this.point2block_, pointHash, {});
   this.point2block_[pointHash][blockHash] = block;
 
   if (!goog.object.containsKey(this.block2point_, blockHash)) {
@@ -147,7 +147,7 @@ schedul.bh.Box3Heap.prototype.deleteBlock_ = function(deletingBlock) {
  * @return {!boolean}
  */
 schedul.bh.Box3Heap.prototype.containsBlock = function(block) {
-  goog.asserts.assertInstanceof(block,schedul.math.Box3);
+  goog.asserts.assertInstanceof(block, schedul.math.Box3);
 
   var blockHash = block.toString();
   return goog.object.containsKey(this.block2point_, blockHash);
@@ -225,7 +225,7 @@ schedul.bh.Box3Heap.prototype.pageOutFarestFrom = function(block) {
 schedul.bh.Box3Heap.prototype.pageOutIfCapacityOver_ = function(block) {
   goog.asserts.assertInstanceof(block, schedul.math.Box3);
 
-  if(this.capacity_ <= 0){
+  if (this.capacity_ <= 0) {
     return;
   }
 
@@ -326,16 +326,16 @@ schedul.bh.Box3Heap.prototype.minY = function() {
 /**
  * @return {!Array.<!schedul.math.Box3>}
  */
-schedul.bh.Box3Heap.prototype.dump = function(){
+schedul.bh.Box3Heap.prototype.dump = function() {
   var uniqueResult = {};
-  goog.object.forEach(this.point2block_,function(blocks,pointHash,o){
-    goog.object.forEach(blocks,function(block,blockHash,o){
+  goog.object.forEach(this.point2block_, function(blocks, pointHash, o) {
+    goog.object.forEach(blocks, function(block, blockHash, o) {
       uniqueResult[blockHash] = block;
     },this);
   },this);
 
   var result = [];
-  goog.object.forEach(uniqueResult,function(block,blockHash,o){
+  goog.object.forEach(uniqueResult, function(block, blockHash, o) {
     result.push(block);
   },this);
   return result;
