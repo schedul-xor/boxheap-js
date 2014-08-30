@@ -18,11 +18,12 @@ goog.require('schedul.math.Box3');
  *
  * @constructor
  * @extends {goog.events.EventTarget}
- * @param {!number} capacity
+ * @param {number=} opt_capacity
  */
-schedul.bh.Box3Heap = function(capacity) {
+schedul.bh.Box3Heap = function(opt_capacity) {
   goog.base(this);
-  goog.asserts.assertNumber(capacity);
+
+  var capacity = goog.isDefAndNotNull(opt_capacity) ? opt_capacity : -1;
 
   this.pointHeap_ = new schedul.bh.Coordinate3Heap(capacity * 9);
   goog.events.listen(this.pointHeap_,

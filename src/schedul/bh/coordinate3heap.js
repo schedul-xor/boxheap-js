@@ -16,11 +16,10 @@ goog.require('ubilabs.KDTree');
  *
  * @constructor
  * @extends {goog.events.EventTarget}
- * @param {!number} capacity
+ * @param {number=} opt_capacity
  */
-schedul.bh.Coordinate3Heap = function(capacity) {
+schedul.bh.Coordinate3Heap = function(opt_capacity) {
   goog.base(this);
-  goog.asserts.assertNumber(capacity);
 
   this.maxXHeap_ = new goog.structs.PriorityQueue();
   this.maxXValue2PointMap_ = {};
@@ -39,7 +38,7 @@ schedul.bh.Coordinate3Heap = function(capacity) {
 
   this.pointXyts_ = {};
   this.pointXytCount_ = 0;
-  this.maxPointXytCount_ = capacity;
+  this.maxPointXytCount_ = goog.isDefAndNotNull(opt_capacity) ? opt_capacity : -1;
 
   this.index_ = new ubilabs.KDTree();
   this.limitsVessel_ = new Array(6);
