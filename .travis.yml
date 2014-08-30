@@ -8,7 +8,7 @@ before_script:
   - 'unzip master.zip'
   - 'rm master.zip'
   - 'cp -r kdtree-closure-master/src/ubilabs src'
-  - 'wget https://github.com/openlayers/ol3/archive/master.zip'
+  - 'wget https://github.com/schedul-xor/ol3/archive/master.zip'
   - 'unzip master.zip'
   - 'rm master.zip'
   - 'cp -r ol3-master/src/ol src'
