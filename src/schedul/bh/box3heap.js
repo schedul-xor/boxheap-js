@@ -341,3 +341,14 @@ schedul.bh.Box3Heap.prototype.dump = function() {
   },this);
   return result;
 };
+
+
+/**
+ *
+ */
+schedul.bh.Box3Heap.prototype.clear = function() {
+  this.pointHeap_.clear();
+  goog.object.clear(this.point2block_);
+  goog.object.clear(this.block2point_);
+  this.blockSize_ = 0;
+};

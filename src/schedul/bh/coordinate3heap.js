@@ -306,6 +306,28 @@ schedul.bh.Coordinate3Heap.prototype.isEmpty = function() {
 
 
 /**
+ *
+ */
+schedul.bh.Coordinate3Heap.prototype.clear = function() {
+  this.maxXHeap_.clear();
+  this.minXHeap_.clear();
+  this.maxYHeap_.clear();
+  this.minYHeap_.clear();
+  this.maxZHeap_.clear();
+  this.minZHeap_.clear();
+  goog.object.clear(this.maxXValue2PointMap_);
+  goog.object.clear(this.minXValue2PointMap_);
+  goog.object.clear(this.maxYValue2PointMap_);
+  goog.object.clear(this.minYValue2PointMap_);
+  goog.object.clear(this.maxZValue2PointMap_);
+  goog.object.clear(this.minZValue2PointMap_);
+  goog.object.clear(this.pointXyts_);
+  this.pointXytCount_ = 0;
+  this.index_.clear();
+};
+
+
+/**
  * @return {?number}
  */
 schedul.bh.Coordinate3Heap.prototype.maxX = function() {
